@@ -1,14 +1,25 @@
 package com.diglesia.hw2017mobiledev.lec3activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 
 public class SliderActivity extends AppCompatActivity {
-    public static final String SLIDER_VALUE_KEY = "slider_value_key";
+    private static final String SLIDER_VALUE_KEY = "slider_value_key";
 
     private SeekBar mSeekBar;
+
+    public static Intent newIntent(Context context, int initialValue) {
+        Intent i = new Intent(context, SliderActivity.class);
+        i.putExtra(SLIDER_VALUE_KEY, initialValue);
+        return i;
+    }
+
+    public static int getSliderValueFromReturnIntent(Intent i) {
+        return i.getIntExtra(SliderActivity.SLIDER_VALUE_KEY, 0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
